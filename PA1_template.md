@@ -10,20 +10,6 @@ output:
 
 ```r
 library(tidyverse)
-```
-
-```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
-## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-## ✔ readr   2.1.3      ✔ forcats 0.5.2 
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-```
-
-```r
 library(patchwork)
 library(chron)
 
@@ -32,7 +18,7 @@ activity <- readr::read_csv(unzip("activity.zip", "activity.csv"))
 
 ```
 ## Rows: 17568 Columns: 3
-## ── Column specification ────────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## dbl  (2): steps, interval
 ## date (1): date
@@ -67,7 +53,7 @@ ggplot(stepday, aes(sumsteps))+
 ## Warning: Removed 8 rows containing non-finite values (`stat_bin()`).
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![plot of chunk question 1](figure/question 1-1.png)
 
 The mean and median per day are calculated by the following code and given 
 result in code chunk.
@@ -126,7 +112,7 @@ ggplot(stepseries)+
       labs(x= "time 0 to 24:00", y= "average of steps in this interval")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![plot of chunk question2](figure/question2-1.png)
 
 ```r
 stepseries %>% slice_max(meansteps)
@@ -179,7 +165,7 @@ plot1 + plot2
 ## Warning: Removed 8 rows containing non-finite values (`stat_bin()`).
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![plot of chunk question 3](figure/question 3-1.png)
 
 ```r
 rm(plot1,plot2)
@@ -254,8 +240,7 @@ stepweekday <- activityimpute %>% group_by(weekday, interval) %>% summarise(mean
 ```
 
 ```
-## `summarise()` has grouped output by 'weekday'. You can override using the
-## `.groups` argument.
+## `summarise()` has grouped output by 'weekday'. You can override using the `.groups` argument.
 ```
 
 ```r
@@ -267,6 +252,6 @@ ggplot(stepweekday)+
       labs(x= "time 0 to 24:00", y= "average of steps in this interval")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![plot of chunk question 4](figure/question 4-1.png)
 
 

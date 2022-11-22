@@ -7,7 +7,7 @@ output:
 
 ## Loading and preprocessing the data and libraries
 
-```{r}
+```{r setup}
 library(tidyverse)
 library(patchwork)
 library(chron)
@@ -25,7 +25,7 @@ activity$DateTime <- strptime(paste(activity$date, activity$hour, activity$minut
 In a histogram is shown the number of steps per day. For this a new table 
 "stepday" is generated. Within this the sum of steps per day is calculated.
 The results are shown in figure.
-```{r}
+```{r question 1}
 stepday <- activity %>% group_by(date) %>% summarise(sumsteps=sum(steps))
 
 ggplot(stepday, aes(sumsteps))+
@@ -56,7 +56,7 @@ stepmedian
 To answer this question the mean for each interval over the whole observation
 per day was calculated. the results are shown in the graph. To 
 
-```{r}
+```{r question2}
 stepseries <- activity %>% group_by(interval) %>% summarise(meansteps=mean(steps, na.rm=T))
 
 
@@ -74,7 +74,7 @@ stepseries %>% slice_max(meansteps)
 
 ## Imputing missing values
 
-```{r}
+```{r question 3}
 ## Data was copied and seperated into two files with missing and no missing values
 activityimpute <- activity
 activityempty <- activityimpute[is.na(activityimpute$steps),]
@@ -128,7 +128,7 @@ Mean and median an nearly not impacted by imputed values. Although graphs were s
 
 Weekdays show more steps in the morning, while weekend days show more steps during the day.
 
-```{r}
+```{r question 4}
 ## new variable weekday introduced
 activityimpute$weekday <- factor(!is.weekend(activityimpute$date), labels=c("weekend", "weekday"))
 
